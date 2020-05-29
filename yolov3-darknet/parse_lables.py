@@ -3,7 +3,7 @@ import os
 
 
 def read_labels():
-    with open(r"./DTLD_Labels copy/Bremen_all.yml") as file:
+    with open(r"./Fulda_all.yml") as file:
         # The FullLoader parameter handles the conversion from YAML
         # scalar values to Python the dictionary format
         labels_list = yaml.load(file, Loader=yaml.FullLoader)
@@ -35,13 +35,35 @@ def write_labels_to_file(label_string, filename):
 def generate_label_string(box):
     # Format: <object-class> <x_center> <y_center> <width> <height>
 
-    object_class = box.get("class_id")
+    class_id = box.get("class_id")
+    print('class_id')
+    print(str(class_id)[4])
+    object_class = str(class_id)[4]
+
 
     width = box.get("width") / 2048
     height = box.get("height") / 1024
 
-    x = (box.get("x") + width / 2 - height / 2) / 2048
-    y = (box.get("y") + width / 2 - height / 2) / 1024
+    x = (box.get("x") + box.get("width") / 2 + box.get("height") / 2) / 2048
+    y = (box.get("y") + box.get("width") / 2 + box.get("height") / 2) / 1024
+
+    if(x<0):
+        x = 0.0
+    if(y<0):
+        y= 0.0
+    if(width<0):
+        width = 0.0
+    if(height<0):
+        height = 0.0
+
+    if(x>1.0):
+        x = 1.0
+    if(y>1.0):
+        y= 1.0
+    if(width>1.0):
+        width = 1.0
+    if(height>1.0):
+        height = 1.0
 
     parameter_string = (
         str(object_class)
