@@ -3,6 +3,7 @@ import yaml
 import os
 
 
+
 def write_json_file(data):
     with open("./build/ssd/TRAIN_objects.json", "w") as outfile:
         json.dump(data, outfile)
@@ -10,8 +11,7 @@ def write_json_file(data):
 
 def read_labels():
     with open(r"./Fulda_all.yml") as file:
-        # The FullLoader parameter handles the conversion from YAML
-        # scalar values to Python the dictionary format
+        
         labels_list = yaml.load(file, Loader=yaml.FullLoader)
     return labels_list
 

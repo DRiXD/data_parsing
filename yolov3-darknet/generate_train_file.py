@@ -4,14 +4,7 @@ import os
 
 def read_labels():
     with open(r"./Fulda_all.yml") as file:
-        # The FullLoader parameter handles the conversion from YAML
-        # scalar values to Python the dictionary format
         labels_list = yaml.load(file, Loader=yaml.FullLoader)
-
-        # print(labels_list[0])
-        # print("TEST")
-        # print(labels_list[0].get("objects")[0].get("x"))
-        # print(len(labels_list))
     return labels_list
 
 
