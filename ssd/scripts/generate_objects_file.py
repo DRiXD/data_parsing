@@ -2,7 +2,8 @@ import json
 import yaml
 import os
 
-
+#path to DriveU anntotations file
+annotation_path= "./Fulda_all.yml"
 
 def write_json_file(data):
     with open("./build/ssd/TRAIN_objects.json", "w") as outfile:
@@ -10,7 +11,7 @@ def write_json_file(data):
 
 
 def read_labels():
-    with open(r"./Fulda_all.yml") as file:
+    with open(annotation_path) as file:
         
         labels_list = yaml.load(file, Loader=yaml.FullLoader)
     return labels_list
