@@ -3,7 +3,7 @@ import os
 
 
 def read_labels():
-    with open(r"./DTLD_Labels copy/Bremen_all.yml") as file:
+    with open(r"./Fulda_all.yml") as file:
         # The FullLoader parameter handles the conversion from YAML
         # scalar values to Python the dictionary format
         labels_list = yaml.load(file, Loader=yaml.FullLoader)
@@ -29,7 +29,7 @@ def create_directory():
 
 def write_to_file(filename):
     labels_file = open("build/train/train.txt", "a+")
-    labels_file.write("test/" + filename + "\n")
+    labels_file.write("E:\Datasets\DriveU_Fulda/" + filename + ".jpg \n")
     labels_file.close()
 
 
